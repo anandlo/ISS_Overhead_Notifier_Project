@@ -7,15 +7,10 @@ import os
 MY_LAT = 44.656610
 MY_LONG = -63.624070
 
-MY_EMAIL = "projectcodeworks@gmail.com"
-MY_PASS = "kste cqjy jjjo vlwe"
-HET = "jivanihet142004@gmail.com"
-
 # Track if the ISS is currently overhead and the last time an email was sent
 iss_overhead = False
 last_sent_time = None
 email_interval = 10 * 60  # 10 minutes in seconds
-
 
 def is_iss_overhead():
     try:
@@ -71,7 +66,7 @@ while True:
                     connection.starttls()
                     connection.login(user=os.environ["MY_EMAIL"], password=os.environ["MY_PASS"])
                     connection.sendmail(
-                        from_addr= os.environ["MY_EMAIL"],
+                        from_addr=os.environ["MY_EMAIL"],
                         to_addrs=[os.environ["MY_EMAIL"], os.environ["HET"]],
                         msg="Subject: ISS Overhead Alert: Time to Look Up!\n\n"
                             "Hello,\n\n"
