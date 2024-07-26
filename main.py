@@ -2,6 +2,7 @@ import smtplib
 import time
 import requests
 from datetime import datetime
+import os
 
 MY_LAT = 44.656610
 MY_LONG = -63.624070
@@ -68,10 +69,10 @@ while True:
             try:
                 with smtplib.SMTP("smtp.gmail.com", 587) as connection:
                     connection.starttls()
-                    connection.login(user=MY_EMAIL, password=MY_PASS)
+                    connection.login(user=os.environ["MY_EMAIL"], password=os.environ["MY_PASS"])
                     connection.sendmail(
-                        from_addr=MY_EMAIL,
-                        to_addrs=[MY_EMAIL, HET],
+                        from_addr= os.environ["MY_EMAIL"],
+                        to_addrs=[os.environ["MY_EMAIL"], os.environ["HET"]],
                         msg="Subject: ISS Overhead Alert: Time to Look Up!\n\n"
                             "Hello,\n\n"
                             "This is an automated notification from ISS Tracking System.\n"
